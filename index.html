@@ -1,0 +1,1044 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SWIFT A.G.E.N.T. DOMINATION</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    /* LOS ANGELES LAKERS THEME (Default Dark Mode) */
+    --bg-main: #060407; /* Staples Center Court Perimeter Dark */
+    --bg-surface: #120D1A; /* Deep Hollywood Purple Shadow */
+    --border-color: #2F2440;
+    --text-primary: #F8FAFC;
+    --text-muted: #A79BB5;
+    --accent-color: #FDB927; /* Gold Standard Accent */
+    --accent-hover: #E5A51C;
+    --card-shadow: rgba(85, 37, 130, 0.2); /* Subtle Purple Underglow */
+    --input-bg: #060407;
+    --logo-bg: #552583; /* Forum Purple Badge */
+    --logo-text: #FDB927; /* Gold Text */
+    --active-text: #060407; /* Deep dark tone to ensure gold backgrounds are 100% readable */
+}
+
+[data-theme="celtics"] {
+    /* BOSTON CELTICS THEME (Light Mode) */
+    --bg-main: #F4F7F5; 
+    --bg-surface: #FFFFFF; 
+    --border-color: #CBD5E1; 
+    --text-primary: #000000; 
+    --text-muted: #1F2937; 
+    --accent-color: #007A33; /* Shamrock Green */
+    --accent-hover: #005C26;
+    --card-shadow: rgba(0, 122, 51, 0.08);
+    --input-bg: #F8FAFC;
+    --logo-bg: #007A33; 
+    --logo-text: #FFFFFF;
+    --active-text: #FFFFFF;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+body{
+    font-family:'Inter',sans-serif;
+    background: var(--bg-main);
+    color: var(--text-primary);
+}
+
+.header{
+    background: var(--bg-surface);
+    border-bottom:3px solid var(--accent-color);
+    padding:14px 30px;
+    position:sticky;
+    top:0;
+    z-index:100;
+    box-shadow: 0 4px 20px var(--card-shadow);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.logo-badge {
+    background: var(--logo-bg);
+    color: var(--logo-text);
+    font-size: 22px;
+    font-weight: 900;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+}
+
+.logo h1{
+    font-size:24px;
+    font-weight:800;
+    letter-spacing: 0.5px;
+    color: var(--text-primary);
+}
+
+.acronym-bar {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    margin-left: 15px;
+}
+
+.acronym-bar span {
+    color: var(--accent-color);
+}
+
+.theme-toggle-btn {
+    background: var(--bg-main);
+    color: var(--text-primary);
+    border: 2px solid var(--accent-color);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 800;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.theme-toggle-btn:hover {
+    background: var(--accent-color);
+    color: var(--active-text);
+}
+
+.container{
+    display:flex;
+    min-height:calc(100vh - 79px);
+}
+
+.sidebar{
+    width:320px;
+    background: var(--bg-surface);
+    border-right:1px solid var(--border-color);
+    padding:20px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sidebar-nav {
+    flex: 1;
+}
+
+.tab-btn{
+    width:100%;
+    text-align:left;
+    padding:12px 16px;
+    border:none;
+    background:none;
+    border-radius:8px;
+    margin-bottom:6px;
+    cursor:pointer;
+    font-size:14px;
+    font-weight:700;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.tab-btn:hover{
+    background: rgba(148, 163, 184, 0.1);
+    color: var(--text-primary);
+}
+
+.tab-btn.active{
+    background: var(--accent-color);
+    color: var(--active-text);
+}
+
+.sidebar-section-title {
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--accent-color);
+    margin: 15px 0 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px dashed var(--border-color);
+    padding-bottom: 4px;
+}
+
+.quick-notes-container {
+    padding-top: 10px;
+}
+
+.notes-textarea {
+    width: 100%;
+    min-height: 90px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 13px;
+    background: var(--input-bg);
+    color: var(--text-primary);
+    resize: none;
+    outline: none;
+    font-weight: 600;
+}
+
+.notes-textarea:focus {
+    border-color: var(--accent-color);
+}
+
+.notes-btn {
+    width: 100%;
+    background: var(--accent-color);
+    color: var(--active-text);
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: 800;
+    font-size: 11px;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 6px;
+}
+
+.notes-btn:hover {
+    background: var(--accent-hover);
+}
+
+.link-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.link-btn {
+    display: block;
+    text-align: left;
+    text-decoration: none;
+    background: var(--input-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.link-btn:hover {
+    background: var(--accent-color);
+    color: var(--active-text) !important;
+    border-color: var(--accent-color);
+}
+
+.social-footer {
+    display: flex;
+    gap: 8px;
+    margin-top: 5px;
+}
+
+.social-btn {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    padding: 8px;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    border-radius: 4px;
+    color: #FFFFFF;
+}
+
+.fb-color { background: #1877F2; }
+.yt-color { background: #FF0000; }
+
+.main{
+    flex:1;
+    padding:30px;
+    overflow-y:auto;
+}
+
+.section{
+    display:none;
+}
+
+.section.active{
+    display:block;
+}
+
+.section h2{
+    font-size:26px;
+    font-weight:800;
+    margin-bottom:6px;
+    color: var(--text-primary);
+}
+
+.section p{
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-bottom:25px;
+}
+
+.card{
+    background: var(--bg-surface);
+    border-radius:8px;
+    padding:20px;
+    margin-bottom:18px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 15px var(--card-shadow);
+}
+
+.card-title{
+    font-size:14px;
+    font-weight:800;
+    margin-bottom:10px;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+textarea{
+    width:100%;
+    min-height:110px;
+    border:1px solid var(--border-color);
+    border-radius:6px;
+    padding:14px;
+    font-size:14px;
+    font-weight: 600;
+    line-height:1.6;
+    resize:vertical;
+    background: var(--input-bg);
+    color: var(--text-primary);
+    outline: none;
+}
+
+textarea:focus {
+    border-color: var(--accent-color);
+}
+
+.actions{
+    display:flex;
+    gap:10px;
+    margin-top:12px;
+}
+
+.copy-btn{
+    background: var(--accent-color);
+    color: var(--active-text);
+    border:none;
+    padding:11px 24px;
+    border-radius:6px;
+    cursor:pointer;
+    font-weight:800;
+    text-transform: uppercase;
+    font-size: 13px;
+}
+
+.copy-btn:hover{
+    background: var(--accent-hover);
+}
+
+.select-btn{
+    background:transparent;
+    color: var(--text-muted);
+    border:1px solid var(--border-color);
+    padding:11px 20px;
+    border-radius:6px;
+    cursor:pointer;
+    font-weight:700;
+    text-transform: uppercase;
+    font-size: 13px;
+}
+
+.select-btn:hover {
+    background: rgba(148, 163, 184, 0.1);
+    color: var(--text-primary);
+}
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.search{
+    width:340px;
+    padding:12px 16px;
+    background: var(--bg-surface);
+    border:1px solid var(--border-color);
+    color: var(--text-primary);
+    border-radius:8px;
+    font-size:14px;
+    font-weight:600;
+    outline:none;
+}
+
+.search:focus {
+    border-color: var(--accent-color);
+}
+
+.badge{
+    background: rgba(253, 185, 39, 0.1);
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+    padding:6px 14px;
+    border-radius:4px;
+    font-size:12px;
+    font-weight:800;
+    letter-spacing: 0.5px;
+}
+
+[data-theme="celtics"] .badge {
+    background: rgba(0, 122, 51, 0.1);
+}
+
+@media(max-width:940px){
+    .container{
+        flex-direction:column;
+    }
+    .sidebar{
+        width:100%;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        padding: 15px 20px;
+    }
+    .sidebar-nav {
+        display:flex;
+        overflow-x:auto;
+        gap:10px;
+        padding-bottom: 5px;
+    }
+    .tab-btn{
+        min-width:190px;
+        margin-bottom:0;
+        white-space: nowrap;
+    }
+    .search{
+        width:100%;
+    }
+    .topbar{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <div class="logo">
+        <div class="logo-badge">⚡</div>
+        <h1>SWIFT A.G.E.N.T. DOMINATION™</h1>
+        <div class="acronym-bar"><span>A</span>cquire • <span>G</span>auge • <span>E</span>xecute • <span>N</span>egotiate • <span>T</span>ransfer</div>
+    </div>
+    <button class="theme-toggle-btn" onclick="toggleTheme()" id="themeBtn">☘️ Travel to Boston</button>
+</div>
+
+<div class="container">
+
+    <div class="sidebar">
+        <div class="sidebar-nav">
+            <div class="sidebar-section-title">A.G.E.N.T. Framework</div>
+            <button class="tab-btn active" onclick="openTab(event,'acquire')">🔍 A • Acquire (Intro & Access)</button>
+            <button class="tab-btn" onclick="openTab(event,'gauge')">📊 G • Gauge (Motivation & Box)</button>
+            <button class="tab-btn" onclick="openTab(event,'execute')">✍️ E • Execute (Offer Delivery)</button>
+            <button class="tab-btn" onclick="openTab(event,'negotiate')">💬 N • Negotiate (Rebuttals)</button>
+            <button class="tab-btn" onclick="openTab(event,'transfer')">📦 T • Transfer (Double Dip / Dispo)</button>
+            <button class="tab-btn" onclick="openTab(event,'ghosted-agents')">👻 Agent Follow-Ups</button>
+        </div>
+
+        <div>
+            <div class="sidebar-section-title">Useful Links</div>
+            <div class="link-stack">
+                <a href="https://swiftie83.github.io/TheSwiftplaybook/" target="_blank" class="link-btn">
+                    📖 Swift Wholesaling Playbook ↗
+                </a>
+                <a href="https://docs.google.com/document/d/1QWwFLUkfi3o2w2SMQVPMJ5NFdWA4Zpcs-36NOcgJgGA/edit?usp=sharing" target="_blank" class="link-btn" style="border-style: dashed; color: var(--accent-color); background: transparent;">
+                    ⚡ Swift Rebuttal Blueprints ↗
+                </a>
+                <a href="https://swiftie83.github.io/Swift-Seller-Negotiation-Dashboard/" target="_blank" class="link-btn">
+                    📊 Seller Negotiation Dashboard ↗
+                </a>
+                <a href="https://swiftie83.github.io/Swiftie83-Swift-Offer-CRM-V5" target="_blank" class="link-btn">
+                    💼 Swift Offer CRM ↗
+                </a>
+            </div>
+        </div>
+
+        <div class="quick-notes-container">
+            <div class="sidebar-section-title">Active Agent / Property Notes</div>
+            <textarea class="notes-textarea" id="customScratchpad" placeholder="Drop agent cell numbers, listing status notes, or counter-offer deadlines here..."></textarea>
+            <button class="notes-btn" onclick="copyScratchpad(this)">Copy Agent Note</button>
+        </div>
+
+        <div>
+            <div class="sidebar-section-title">Community Broadcasts</div>
+            <div class="social-footer">
+                <a href="https://facebook.com/share/g/1AfaCVgUmP" target="_blank" class="social-btn fb-color">Facebook Group</a>
+                <a href="https://www.youtube.com/@swiftequitysolutions" target="_blank" class="social-btn yt-color">YouTube Dispo</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="main">
+
+        <div class="topbar">
+            <input class="search" id="scriptSearch" type="text" placeholder="Search agent outreach copy..." onkeyup="filterScripts()">
+            <div class="badge" id="badgeIndicator">LAKERS CHAMPIONSHIP LOCKER</div>
+        </div>
+
+        <!-- ACQUIRE -->
+        <div id="acquire" class="section active">
+            <h2>Acquire</h2>
+            <p>Initiate direct relationships with listing agents on stale properties or off-market pocket listings. (Referenced verbatim from SWIFT_AGENT_DOMINATION_Playbook_Texts_Emails.pdf)[cite: 1]</p>
+            
+            <div class="card">
+                <div class="card-title">The "Jerry Norton MLS System" Cash Pitch</div>
+                <textarea id="ac1">Hey {{contact.first_name}}, I saw your listing at {{contact.full_address}} and noticed it's been sitting for a minute. I'm an investor looking to buy as-is for cash. We use our own clean contract, use our preferred title company, and close easily within 30 days. If your seller just wants a fast, hassle-free cash exit, let me know. I can get an offer right over to you today.</textarea>
+                <div class="actions">
+                    <button class="copy-btn" onclick="copyText('ac1',this)">Copy</button>
+                    <button class="select-btn" onclick="selectText('ac1')">Select</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Stale Listing Story Text[cite: 1]</div>
+                <textarea id="ac_stale1">Saw your listing at {{contact.full_address}}[cite: 1]. Usually when something sits this long there's a story behind it. What's the seller struggling with most right now?[cite: 1]</textarea>
+                <div class="actions">
+                    <button class="copy-btn" onclick="copyText('ac_stale1',this)">Copy</button>
+                    <button class="select-btn" onclick="selectText('ac_stale1')">Select</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Investor Territory Checking Text[cite: 1]</div>
+                <textarea id="ac_stale2">Noticed the recent price drop on {{contact.full_address}}[cite: 1]. Are they getting close to investor territory or still holding firm?[cite: 1]</textarea>
+                <div class="actions">
+                    <button class="copy-btn" onclick="copyText('ac_stale2',this)">Copy</button>
+                    <button class="select-btn" onclick="selectText('ac_stale2')">Select</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Vacant Property Certainty Hook[cite: 1]</div>
+                <textarea id="ac_stale3">Is the property vacant right now?[cite: 1] Sometimes we can move very quickly on vacant homes if the seller values certainty[cite: 1].</textarea>
+                <div class="actions">
+                    <button class="copy-btn" onclick="copyText('ac_stale3',this)">Copy</button>
+                    <button class="select-btn" onclick="selectText('ac_stale3')">Select</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Heavy-Fixer / As-Is Solution Script[cite: 1]</div>
+                <textarea id="ac_stale4">I specialize in heavy-fixer and distressed inventory[cite: 1]. If the seller is tired of showings and repairs, I'd love to discuss a clean as-is solution[cite: 1].</textarea>
+                <div class="actions">
+                    <button class="copy-btn" onclick="copyText('ac_stale4',this)">Copy</button>
+                    <button class="select-btn" onclick="selectText('ac_stale4')">Select</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Pocket Listing / Pipeline Intro[cite: 1]</div>
+                <textarea id="ac2">Hi {{contact.first_name}}, investor here[cite: 1]. Looking for properties needing work, problem tenants, probate, inherited homes, or sellers open to creative terms[cite: 1]. Anything in your pipeline that hasn't hit the market yet?[cite: 1]</textarea>
+                <div class="actions">
+                    <button class="copy-btn" onclick="copyText('ac2',this)">Copy</button>
+                    <button class="select-btn" onclick="selectText('ac2')">Select</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">General Investor Intro Email[cite: 1]</div>
+                <textarea id="ac_email1">Hey {{contact.first_name}},
+
+My name is Wilkens with Swift Equity Solutions[cite: 1]. I'm actively looking to buy properties needing some love—vacant, inherited, tenant-occupied, or standard value-add homes in your area[cite: 1].
+
+We can purchase completely cash, completely as-is, close quickly, or even look at creative financing if that helps the seller more[cite: 1]. 
+
+If you have any stale listings, failed escrows, tired landlords, or anything that's just tough to move on the MLS right now, let me know[cite: 1]. I'd love to keep it simple for you and become one of your go-to cash buyers[cite: 1].</textarea>
+                <div class="actions">
+                    <button class="copy-btn" onclick="copyText('ac_email1',this)">Copy</button>
+                    <button class="select-btn" onclick="selectText('ac_email1')">Select</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Stale Listing Realtor Email[cite: 1]</div>
+                <textarea id="ac_email2">Hey {{contact.first_name}},
+
+I came across your listing at {{contact.full_address}} and wanted to reach out directly[cite: 1].
+
+I noticed it's been on the market for a little bit[cite: 1]. Just wanted to ask what the seller's main goal is right now, and if they'd ever consider creative terms if it nets them the price they want?[cite: 1]
+
+We specialize in buying properties that need repairs or homes where regular buyers struggle with bank financing[cite: 1]. If there's any flexibility, I'd love to see if we can put something together that works for everyone[cite: 1].</textarea>
+                <div class="actions">
+                    <button class="copy-btn" onclick="copyText('ac_email2',this)">Copy</button>
+                    <button class="select-btn" onclick="selectText('ac_email2')">Select</button>
+                </div>
+            </div>
+
+            <div class="sidebar-section-title">Power Texts (Acquisition Leverage)[cite: 1]</div>
+            <div class="card">
+                <div class="card-title">Real Motivation Flag Text[cite: 1]</div>
+                <textarea id="pwr1">I'm reviewing a few opportunities today, but this one caught my attention because it seems like there may be real motivation[cite: 1].</textarea>
+                <div class="actions">
+                    <button class="copy-btn" onclick="copyText('pwr1',this)">Copy</button>
+                    <button class="select-btn" onclick="selectText('pwr1')">Select</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Straight Answer No-Drag Play[cite: 1]</div>
+                <textarea id="pwr2">Even if we don't land at your number, I'll give you a straight answer quickly instead of dragging things out[cite: 1].</textarea>
+                <div class="actions">
+                    <button class="copy-btn" onclick="copyText('pwr2',this)">Copy</button>
+                    <button class="select-btn" onclick="selectText('pwr2')">Select</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Behind the Scenes Stress Validation[cite: 1]</div>
+                <textarea id="pwr3">Usually when a property sits, there's more stress behind the scenes than people realize[cite: 1]. I'm mainly looking for a win-win solution[cite: 1].</textarea>
+                <div class="actions">
+                    <button class="copy-btn" onclick="copyText('pwr3',this)">Copy</button>
+                    <button class="select-btn" onclick="selectText('pwr3')">Select</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Immediate Structure Commitment[cite: 1]</div>
+                <textarea id="pwr4">If the seller is serious about moving this, I can probably have something structured today[cite: 1].</textarea>
+                <div class="actions">
+                    <button class="copy-btn" onclick="copyText('pwr4',this)">Copy</button>
+                    <button class="select-btn" onclick="selectText('pwr4')">Select</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- GAUGE -->
+        <div id="gauge" class="section">
+            <h2>Gauge</h2>
+            <p>Determine underlying motivation, true damage scope, and seller flexibility without wasting underwriting hours. (Referenced verbatim from SWIFT_AGENT_DOMINATION_Playbook_Texts_Emails.pdf)[cite: 1]</p>
+            
+            <div class="card">
+                <div class="card-title">Quick Situation Real Check Text[cite: 1]</div>
+                <textarea id="ga_q1">Hey {{contact.first_name}}, saw your listing on {{contact.full_address}}[cite: 1]. I work with cash and creative investors buying distressed/off-market properties[cite: 1]. Curious what's the REAL situation with this one?[cite: 1] Any flexibility from seller?[cite: 1]</textarea>
+                <div class="actions">
+                    <button class="copy-btn" onclick="copyText('ga_q1',this)">Copy</button>
+                    <button class="select-btn" onclick="selectText('ga_q1')">Select</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Speed vs Top Dollar Gauge[cite: 1]</div>
+                <textarea id="ga_q2">Hey {{contact.first_name}}, noticed the property's been sitting a little[cite: 1]. Is the seller mainly looking for speed, convenience, or top dollar?[cite: 1] I may have a solution depending on motivation[cite: 1].</textarea>
+                <div class="actions">
+                    <button class="copy-btn" onclick="copyText('ga_q2',this)">Copy</button>
+                    <button class="select-btn" onclick="selectText('ga_q2')">Select</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Jerry Norton "Bottom-Line" Conversation Starter</div>
+                <textarea id="ga1">Hey {{contact.first_name}}, I'm looking closer at {{contact.full_address}} before putting my numbers together. To save us both some time: if we write a clean cash offer on our company contract, waive standard inspection hassles, and close inside 30 days—what is the realistic bottom-line number the seller needs to see to wrap this up?</textarea>
+                <div class="actions">
+                    <button class="copy-btn" onclick="copyText('ga1',this)">Copy</button>
+                    <button class="select-btn" onclick="selectText('ga1')">Select</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Repair & Budget Validation Gauge</div>
+                <textarea id="ga2">Hey {{contact.first_name}}, quick question on {{contact.full_address}}—what's the realistic condition of the big items? Are the roof, HVAC, and foundation completely solid, or are we looking at a baseline full remodel here?</textarea>
+                <div class="actions">
+                    <button class="copy-btn" onclick="copyText('ga2',this)">Copy</button>
+                    <button class="select-btn" onclick="selectText('ga2')">Select</button>
+                </div>
+            </div>
+
+            <div class="sidebar-section-title">Motivation-Based Assessment Texts[cite: 1]</div>
+            <div class="card">
+                <div class="card-title">Inherited / Probate Easy Sale Text[cite: 1]</div>
+                <textarea id="mot1">I work with inherited and probate properties often[cite: 1]. If the family wants an easy as-is sale for {{contact.full_address}}, I'd love to help[cite: 1].</textarea>
+                <div class="actions">
+                    <button class="copy-btn" onclick="copyText('mot1',this)">Copy</button>
+                    <button class="select-btn" onclick="selectText('mot1')">Select</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Tired Landlord / Tenant Fatigue Script[cite: 1]</div>
+                <textarea id="mot2">Is the seller done dealing with tenants at {{contact.full_address}}?[cite: 1] We buy tenant-occupied properties all the time[cite: 1].</textarea>
+                <div class="actions">
+                    <button class="copy-btn" onclick="copyText('mot2',this)">Copy</button>
+                    <button class="select-btn" onclick="selectText('mot2')">Select</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Timing & Simplification Focus Text[cite: 1]</div>
+                <textarea id="mot3">Sounds like timing may matter more than squeezing every dollar out of {{contact.full_address}}[cite: 1]. We may be able to close quickly and simplify things[cite: 1].</textarea>
+                <div class="actions">
+                    <button class="copy-btn" onclick="copyText('mot3',this)">Copy</button>
+                    <button class="select-btn" onclick="selectText('mot3')">Select</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Major Rehab Market Inability Pitch[cite: 1]</div>
+                <textarea id="mot4">Most retail buyers can't handle major rehab needed on {{contact.full_address}}[cite: 1]. My investor group specifically looks for those situations[cite: 1].</textarea>
+                <div class="actions">
+                    <button class="copy-btn" onclick="copyText('mot4',this)">Copy</button>
+                    <button class="select-btn" onclick="selectText('mot4')">Select</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXECUTE -->
+        <div id="execute" class="section">
+            <h2>Execute</h2>
+            <p>Submit mathematically sound, low-friction cash or creative offers directly to the agent's inbox. (Referenced verbatim from SWIFT_AGENT_DOMINATION_Playbook_Texts_Emails.pdf)[cite: 1]</p>
+            
+            <div class="card">
+                <div class="card-title">Jerry Norton Style Cash Offer Submission</div>
+                <textarea id="ex1">Subject: Cash Offer - {{contact.full_address}}
+
+Hi {{contact.first_name}},
+
+Please present this straightforward cash offer to your sellers for {{contact.full_address}}. 
+
+• Terms: 100% Cash / No Financing Contingencies
+• Contract: Buyer's Custom Clean Agreement Attached
+• Title/Escrow: Buyer's Preferred Title Company
+• Closing Timeline: Within 30 days from clear title
+
+We can deposit earnest money as soon as the agreement is signed. Let me know what the sellers think!</textarea>
+                <div class="actions">
+                    <button class="copy-btn" onclick="copyText('ex1',this)">Copy</button>
+                    <button class="select-btn" onclick="selectText('ex1')">Select</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Pace Morby Style Creative Seller Finance Submission</div>
+                <textarea id="ex2">Subject: Creative Alternative Offer - {{contact.full_address}}
+
+Hi {{contact.first_name}},
+
+To help your seller get closer to their target price for {{contact.full_address}} without our standard cash discounts, I've put together a structured alternative. This allows us to give them a premium price via monthly Principal-Only payments.
+
+• Terms: Principal-Only payments
+• Contract: Custom Corporate Contract Attached
+• Title/Escrow: Buyer's Preferred Title Company
+• Timeline: Close within 30 days
+
+Let me know if the seller would prefer this premium setup over a discounted cash sale. Looking forward to hearing your thoughts!</textarea>
+                <div class="actions">
+                    <button class="copy-btn" onclick="copyText('ex2',this)">Copy</button>
+                    <button class="select-btn" onclick="selectText('ex2')">Select</button>
+                </div>
+            </div>
+
+            <div class="sidebar-section-title">Creative Finance Terms Blasters (Pace Morby Style)[cite: 1]</div>
+            <div class="card">
+                <div class="card-title">Taking Over Payments Pitch Text[cite: 1]</div>
+                <textarea id="crt1">Would the seller consider terms for {{contact.full_address}} if price is the issue?[cite: 1] Sometimes taking over payments creates a stronger solution than a low cash offer[cite: 1].</textarea>
+                <div class="actions">
+                    <button class="copy-btn" onclick="copyText('crt1',this)">Copy</button>
+                    <button class="select-btn" onclick="selectText('crt1')">Select</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Higher Price for Monthly Payments Text[cite: 1]</div>
+                <textarea id="crt2">If cash doesn't work for the seller, would they consider monthly payments for a higher price on {{contact.full_address}}?[cite: 1]</textarea>
+                <div class="actions">
+                    <button class="copy-btn" onclick="copyText('crt2',this)">Copy</button>
+                    <button class="select-btn" onclick="selectText('crt2')">Select</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Avoid Repairs & Net More Value Hook[cite: 1]</div>
+                <textarea id="crt3">I may be able to structure something creative that helps the seller net more on {{contact.full_address}} while avoiding repairs and delays[cite: 1].</textarea>
+                <div class="actions">
+                    <button class="copy-btn" onclick="copyText('crt3',this)">Copy</button>
+                    <button class="select-btn" onclick="selectText('crt3')">Select</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- NEGOTIATE -->
+        <div id="negotiate" class="section">
+            <h2>Negotiate</h2>
+            <p>Overcome typical agent roadblocks, pushbacks on custom contracts, and specific market objections found in image_0e8b04.png[cite: 2].</p>
+            
+            <div class="card">
+                <div class="card-title">The "Custom Contract Only" Rebuttal</div>
+                <textarea id="ne1">I totally understand where you're coming from with the state forms, {{contact.first_name}}. Since we're using our own private investment funds, our board requires our specific agreement to handle timelines, vesting, and assignments. Your standard commission is completely protected and written directly into our contract. Let's make sure the price and terms work for the seller first, and then we can easily handle the paperwork side together.</textarea>
+                <div class="actions">
+                    <button class="copy-btn" onclick="copyText('ne1',this)">Copy</button>
+                    <button class="select-btn" onclick="selectText('ne1')">Select</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Defending the Underwritten Margin (Real Talk)</div>
+                <textarea id="ne2">I hear you completely on what the seller wants, {{contact.first_name}}. Our offer for {{contact.full_address}} is based entirely on real physical repair numbers and local market activity. If we pay more, we're taking on a lot of financial risk on the rehab side. Our offer gives your seller a clean, guaranteed exit with zero commissions and a fast close inside 30 days using our contract and preferred title team. Let me know if we can make this work so your seller can move on.</textarea>
+                <div class="actions">
+                    <button class="copy-btn" onclick="copyText('ne2',this)">Copy</button>
+                    <button class="select-btn" onclick="selectText('ne2')">Select</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Objection: Want Market Value / Not Giving It Away</div>
+                <textarea id="ne3">I completely respect that, {{contact.first_name}}. Retail buyers pay market value because they expect a turn-key home where they can just turn the key and move right in. For {{contact.full_address}}, reaching that maximum market value requires a substantial layout of dynamic capital for modern upgrades and structural updates. If the seller has the cash, time, and appetite to manage a full-scale renovation and then wait months for a retail sale, they absolutely should do that. But if they prefer to bypass the contractor headaches, holding costs, and show-readiness, our offer delivers an immediate, guaranteed exit completely as-is.</textarea>
+                <div class="actions">
+                    <button class="copy-btn" onclick="copyText('ne3',this)">Copy</button>
+                    <button class="select-btn" onclick="selectText('ne3')">Select</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Objection: Lowball / Offer Too Low / Need More Money</div>
+                <textarea id="ne4">I hear you, {{contact.first_name}}, and I never want an offer to feel insulting. Our numbers aren't pulled out of thin air—they are strictly data-driven based on immediate local comps and standard baseline material formulas for the area. We are taking on 100% of the execution risk, closing within 30 days using our own clean contract, and covering all standard transactional friction. If we stretch our number any higher, the math simply breaks on our side. If the seller can't make the cash number work, would they be open to looking at a creative structure with Principal-Only payments where we can actually give them a much higher purchase price?</textarea>
+                <div class="actions">
+                    <button class="copy-btn" onclick="copyText('ne4',this)">Copy</button>
+                    <button class="select-btn" onclick="selectText('ne4')">Select</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Objection: Need To Think About It</div>
+                <textarea id="ne5">That makes total sense, {{contact.first_name}}. It’s a big decision and they shouldn't rush it. Just so I can plan our capital allocation—since we currently have a dynamic pool of funds slated for deployment this week—is there a specific part of the offer they are hesitating on? If it’s the price, we're likely firm based on the property's condition, but if it's the timeline, moving dates, or a specific term, we can usually be incredibly flexible to accommodate them. What's the main thing they're mulling over?</textarea>
+                <div class="actions">
+                    <button class="copy-btn" onclick="copyText('ne5',this)">Copy</button>
+                    <button class="select-btn" onclick="selectText('ne5')">Select</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Objection: Not In A Rush</div>
+                <textarea id="ne6">It’s a massive advantage that they aren't under a time crunch, {{contact.first_name}}. However, sometimes letting a distressed or vacant listing sit 'stale' on the MLS ends up costing more in the long run. Retail buyers look at days on market and automatically assume something is deeply wrong with the property, which breeds lower and lower offers over time. Plus, the seller is still burning cash on insurance, taxes, utilities, and general maintenance every single month it sits. Our offer lets them cut off those carrying costs today and walk away clean in 30 days.</textarea>
+                <div class="actions">
+                    <button class="copy-btn" onclick="copyText('ne6',this)">Copy</button>
+                    <button class="select-btn" onclick="selectText('ne6')">Select</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Objection: List With Realtor / Open Market</div>
+                <textarea id="ne7">Listing on the open market is a great route if the home is already pristine and ready for a conventional bank appraisal. Just keep in mind that listing traditionally means staging, endless open houses, dealing with picky retail buyers who back out during inspection contingencies, and waiting 60 to 90 days minimum to actually see funds. Once you subtract the 5-6% agent commissions, seller closing fees, and concessions for repairs the bank will mandate, your 'net' number often ends up right back where our cash offer sits today. Our offer avoids the theater entirely—no commissions, no inspection drop-downs, and a guaranteed 30-day close using our preferred title team.</textarea>
+                <div class="actions">
+                    <button class="copy-btn" onclick="copyText('ne7',this)">Copy</button>
+                    <button class="select-btn" onclick="selectText('ne7')">Select</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Objection: Other Investor in Play</div>
+                <textarea id="ne8">I'm glad you have options, {{contact.first_name}}, but I’d just urge you to look closely at their fine print. A lot of groups throw out high verbal numbers just to lock up a contract, only to drag you through a 15-day inspection period and hit you with a massive price-drop re-negotiation right before closing when the seller is trapped. We don't play those games. Our offer is firm, backed by real underwriting math, and utilizes our own private capital. We close inside 30 days using our custom contract and preferred title company. If that other offer sounds too good to be true, it usually is. Would you rather take a gamble on a speculative high number, or lock in a guaranteed performance with us?</textarea>
+                <div class="actions">
+                    <button class="copy-btn" onclick="copyText('ne8',this)">Copy</button>
+                    <button class="select-btn" onclick="selectText('ne8')">Select</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TRANSFER -->
+        <div id="transfer" class="section">
+            <h2>Transfer</h2>
+            <p>Pitch agents on double-dipping their commission or converting the transaction into a structured co-assignment deal. (Referenced verbatim from SWIFT_AGENT_DOMINATION_Playbook_Texts_Emails.pdf)[cite: 1]</p>
+            
+            <div class="card">
+                <div class="card-title">Jamil Damji "Double-Dip" Collaboration Hook</div>
+                <textarea id="tr1">Hey {{contact.first_name}}, on this deal at {{contact.full_address}}, I want you to represent me on the buying side too. No need to bring in another agent. You can write yourself in for both sides and keep the full double commission. I like keeping things simple and making sure the agents who work with me get taken care of. Let's get this put together!</textarea>
+                <div class="actions">
+                    <button class="copy-btn" onclick="copyText('tr1',this)">Copy</button>
+                    <button class="select-btn" onclick="selectText('tr1')">Select</button>
+                </div>
+            </div>
+
+            <div class="sidebar-section-title">Relationship Builder Lines (Jamil Dispo Vibe)[cite: 1]</div>
+            <div class="card">
+                <div class="card-title">Smooth Close Invitation Line[cite: 1]</div>
+                <textarea id="rel1">Appreciate how smooth you made everything[cite: 1]. If you ever get another difficult seller or ugly property near {{contact.full_address}}, definitely keep me in mind[cite: 1].</textarea>
+                <div class="actions">
+                    <button class="copy-btn" onclick="copyText('rel1',this)">Copy</button>
+                    <button class="select-btn" onclick="selectText('rel1')">Select</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">The "Save Face" Pre-Drop Pocket Hook[cite: 1]</div>
+                <textarea id="rel2">A lot of agents send me their problem listings like {{contact.full_address}} before reducing price publicly[cite: 1]. Helps them save face while still getting deals done[cite: 1].</textarea>
+                <div class="actions">
+                    <button class="copy-btn" onclick="copyText('rel2',this)">Copy</button>
+                    <button class="select-btn" onclick="selectText('rel2')">Select</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">The "Retail Deal Fixer" Brand Positioning[cite: 1]</div>
+                <textarea id="rel3">I'm not competing with retail buyers near {{contact.full_address}} - I mainly solve the deals retail buyers can't[cite: 1].</textarea>
+                <div class="actions">
+                    <button class="copy-btn" onclick="copyText('rel3',this)">Copy</button>
+                    <button class="select-btn" onclick="selectText('rel3')">Select</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- AGENT FOLLOW-UPS -->
+        <div id="ghosted-agents" class="section">
+            <h2>Agent Follow-Ups</h2>
+            <p>Scripts to wake up listing agents who went completely dark after an offer or verbal presentation.</p>
+            
+            <div class="card">
+                <div class="card-title">The "Moving Capital" Simple Notice</div>
+                <textarea id="gh1">Hey {{contact.first_name}}, just following up on our cash offer for {{contact.full_address}}. My investment group is looking to allocate our liquid funds to another property this afternoon. Did the seller decide to pass on our 30-day close, or should I hold off on the other property for another hour?</textarea>
+                <div class="actions">
+                    <button class="copy-btn" onclick="copyText('gh1',this)">Copy</button>
+                    <button class="select-btn" onclick="selectText('gh1')">Select</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">The Simple "Still Available?" Text Check</div>
+                <textarea id="gh2">Hey {{contact.first_name}}, just checking in—did the sellers accept another offer on {{contact.full_address}}, or are they still looking for a clean cash buyer?</textarea>
+                <div class="actions">
+                    <button class="copy-btn" onclick="copyText('gh2',this)">Copy</button>
+                    <button class="select-btn" onclick="selectText('gh2')">Select</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+function toggleTheme() {
+    const body = document.body;
+    const btn = document.getElementById('themeBtn');
+    const badge = document.getElementById('badgeIndicator');
+    
+    if (body.getAttribute('data-theme') === 'celtics') {
+        body.removeAttribute('data-theme');
+        btn.innerHTML = '☘️ Travel to Boston';
+        badge.innerHTML = 'LAKERS CHAMPIONSHIP LOCKER';
+    } else {
+        body.setAttribute('data-theme', 'celtics');
+        btn.innerHTML = '👑 Return to L.A.';
+        badge.innerHTML = 'CELTICS BANNER ROOM ACCESS';
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    const body = document.body;
+    const btn = document.getElementById('themeBtn');
+    if(body.getAttribute('data-theme') === 'celtics') {
+        btn.innerHTML = '👑 Return to L.A.';
+    } else {
+        btn.innerHTML = '☘️ Travel to Boston';
+    }
+});
+
+function openTab(evt, tabName){
+    document.getElementById('scriptSearch').value = '';
+    
+    let sections = document.getElementsByClassName("section");
+    for(let i=0; i<sections.length; i++){
+        sections[i].classList.remove("active");
+        let cards = sections[i].getElementsByClassName("card");
+        for(let j=0; j<cards.length; j++){
+            cards[j].style.display = "block";
+        }
+    }
+
+    let tabs = document.getElementsByClassName("tab-btn");
+    for(let i=0; i<tabs.length; i++){
+        tabs[i].classList.remove("active");
+    }
+
+    document.getElementById(tabName).classList.add("active");
+    evt.currentTarget.classList.add("active");
+}
+
+function copyText(id, btn){
+    let text = document.getElementById(id);
+    text.select();
+    text.setSelectionRange(0,99999);
+    navigator.clipboard.writeText(text.value);
+
+    let original = btn.innerHTML;
+    btn.innerHTML = "Copied!";
+    
+    setTimeout(()=>{
+        btn.innerHTML = original;
+    },1500);
+}
+
+function selectText(id){
+    let text = document.getElementById(id);
+    text.focus();
+    text.select();
+}
+
+function copyScratchpad(btn) {
+    let notesText = document.getElementById('customScratchpad');
+    notesText.select();
+    notesText.setSelectionRange(0, 99999);
+    navigator.clipboard.writeText(notesText.value);
+
+    let originalText = btn.innerHTML;
+    btn.innerHTML = "Copied Note!";
+
+    setTimeout(() => {
+        btn.innerHTML = originalText;
+    }, 1500);
+}
+
+function filterScripts() {
+    let input = document.getElementById('scriptSearch');
+    let filter = input.value.toLowerCase();
+    
+    let activeSection = document.querySelector('.section.active');
+    if (!activeSection) return;
+    
+    let cards = activeSection.getElementsByClassName('card');
+
+    for (let i = 0; i < cards.length; i++) {
+        let title = cards[i].getElementsByClassName('card-title')[0].innerText.toLowerCase();
+        let textareaValue = cards[i].getElementsByTagName('textarea')[0].value.toLowerCase();
+        
+        if (title.includes(filter) || textareaValue.includes(filter)) {
+            cards[i].style.display = "";
+        } else {
+            cards[i].style.display = "none";
+        }
+    }
+}
+</script>
+
+</body>
+</html>
