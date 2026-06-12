@@ -8,33 +8,17 @@
 
 <style>
 :root {
-    /* LOS ANGELES LAKERS THEME (Default Dark Mode) */
-    --bg-main: #060407; /* Staples Center Court Perimeter Dark */
-    --bg-surface: #120D1A; /* Deep Hollywood Purple Shadow */
-    --border-color: #2F2440;
-    --text-primary: #F8FAFC;
-    --text-muted: #A79BB5;
-    --accent-color: #FDB927; /* Gold Standard Accent */
-    --accent-hover: #E5A51C;
-    --card-shadow: rgba(85, 37, 130, 0.2); /* Subtle Purple Underglow */
-    --input-bg: #060407;
-    --logo-bg: #552583; /* Forum Purple Badge */
-    --logo-text: #FDB927; /* Gold Text */
-    --active-text: #060407; /* Deep dark tone to ensure gold backgrounds are 100% readable */
-}
-
-[data-theme="celtics"] {
-    /* BOSTON CELTICS THEME (Light Mode) */
-    --bg-main: #F4F7F5; 
+    /* EMERALD BLOOM - PRISTINE MAY CANVAS (Strict Light Mode Only) */
+    --bg-main: #F4F7F6; 
     --bg-surface: #FFFFFF; 
-    --border-color: #CBD5E1; 
-    --text-primary: #000000; 
-    --text-muted: #1F2937; 
-    --accent-color: #007A33; /* Shamrock Green */
-    --accent-hover: #005C26;
-    --card-shadow: rgba(0, 122, 51, 0.08);
+    --border-color: #E2E8F0; 
+    --text-primary: #0F172A; 
+    --text-muted: #475569; 
+    --accent-color: #047857; /* Deep Organic Emerald Garden */
+    --accent-hover: #065F46;
+    --card-shadow: rgba(4, 120, 87, 0.06);
     --input-bg: #F8FAFC;
-    --logo-bg: #007A33; 
+    --logo-bg: #047857; 
     --logo-text: #FFFFFF;
     --active-text: #FFFFFF;
 }
@@ -101,27 +85,6 @@ body{
 
 .acronym-bar span {
     color: var(--accent-color);
-}
-
-.theme-toggle-btn {
-    background: var(--bg-main);
-    color: var(--text-primary);
-    border: 2px solid var(--accent-color);
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-weight: 800;
-    font-size: 12px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.theme-toggle-btn:hover {
-    background: var(--accent-color);
-    color: var(--active-text);
 }
 
 .container{
@@ -397,7 +360,7 @@ textarea:focus {
 }
 
 .badge{
-    background: rgba(253, 185, 39, 0.1);
+    background: rgba(4, 120, 87, 0.1);
     color: var(--accent-color);
     border: 1px solid var(--accent-color);
     padding:6px 14px;
@@ -405,10 +368,6 @@ textarea:focus {
     font-size:12px;
     font-weight:800;
     letter-spacing: 0.5px;
-}
-
-[data-theme="celtics"] .badge {
-    background: rgba(0, 122, 51, 0.1);
 }
 
 @media(max-width:940px){
@@ -452,7 +411,6 @@ textarea:focus {
         <h1>SWIFT A.G.E.N.T. DOMINATION™</h1>
         <div class="acronym-bar"><span>A</span>cquire • <span>G</span>auge • <span>E</span>xecute • <span>N</span>egotiate • <span>T</span>ransfer</div>
     </div>
-    <button class="theme-toggle-btn" onclick="toggleTheme()" id="themeBtn">☘️ Travel to Boston</button>
 </div>
 
 <div class="container">
@@ -461,6 +419,7 @@ textarea:focus {
         <div class="sidebar-nav">
             <div class="sidebar-section-title">A.G.E.N.T. Framework</div>
             <button class="tab-btn active" onclick="openTab(event,'acquire')">🔍 A • Acquire (Intro & Access)</button>
+            <button class="tab-btn" onclick="openTab(event,'realtor-outreach')">🏡 Agent / Realtor Outreach</button>
             <button class="tab-btn" onclick="openTab(event,'gauge')">📊 G • Gauge (Motivation & Box)</button>
             <button class="tab-btn" onclick="openTab(event,'execute')">✍️ E • Execute (Offer Delivery)</button>
             <button class="tab-btn" onclick="openTab(event,'negotiate')">💬 N • Negotiate (Rebuttals)</button>
@@ -505,7 +464,7 @@ textarea:focus {
 
         <div class="topbar">
             <input class="search" id="scriptSearch" type="text" placeholder="Search agent outreach copy..." onkeyup="filterScripts()">
-            <div class="badge" id="badgeIndicator">LAKERS CHAMPIONSHIP LOCKER</div>
+            <div class="badge" id="badgeIndicator">EMERALD BLOOM ACCESS GRANTED</div>
         </div>
 
         <!-- ACQUIRE -->
@@ -571,7 +530,7 @@ textarea:focus {
                 <div class="card-title">General Investor Intro Email</div>
                 <textarea id="ac_email1">Hey {{contact.first_name}},
 
-My name is Wilkens with Swift Equity Solutions. I'm actively looking to buy properties needing some love—vacant, inherited, tenant-occupied, or standard value-add homes in your area.
+My name is {{sender.first_name}} with {{sender.company}}. I'm actively looking to buy properties needing some love—vacant, inherited, tenant-occupied, or standard value-add homes in your area.
 
 We can purchase completely cash, completely as-is, close quickly, or even look at creative financing if that helps the seller more. 
 
@@ -635,6 +594,58 @@ We specialize in buying properties that need repairs or homes where regular buye
             </div>
         </div>
 
+        <!-- REALTOR OUTREACH -->
+        <div id="realtor-outreach" class="section">
+            <h2>Agent / Realtor Outreach</h2>
+            <p>Target active market realtors to secure pocket listings, incoming inventory, and exclusive double-dip scenarios.</p>
+
+            <div class="card">
+                <div class="card-title">Realtor Text: Direct Property & Portfolio Inquiry Hook</div>
+                <textarea id="ro_text1">Hey {{contact.first_name}}, I see your listing at {{contact.full_address}}. We're an investment fund looking for inventory in this pocket. Do you have any other properties or off-market deals matching this profile in your network right now? If your seller is open to a quick, clean transaction on this one, I want you to represent us on the buy side so you can take both sides of the commission. Let me know if we can coordinate an offer today.</textarea>
+                <div class="actions">
+                    <button class="copy-btn" onclick="copyText('ro_text1',this)">Copy</button>
+                    <button class="select-btn" onclick="selectText('ro_text1')">Select</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Realtor Text: Unlisted / Off-Market Pipeline Check</div>
+                <textarea id="ro_text2">Hi {{contact.first_name}}, this is {{sender.first_name}} with {{sender.company}}. We are currently looking for assets needing structural updates or with property management headaches in this zip code. Do you have any off-market listings, raw land, or incoming property inventory that won't qualify for traditional financing?</textarea>
+                <div class="actions">
+                    <button class="copy-btn" onclick="copyText('ro_text2',this)">Copy</button>
+                    <button class="select-btn" onclick="selectText('ro_text2')">Select</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Realtor Email: Long-Form Strategic Alliance Onboarding</div>
+                <textarea id="ro_email1">Subject: Investor Cash Buyer Alliance // Pocket Listings Request
+
+Hi {{contact.first_name}},
+
+My name is {{sender.first_name}} and I handle acquisitions over at {{sender.company}}. We are aggressively deploying capital into your active market targets this quarter. 
+
+We look explicitly for properties that are hard to move on the traditional MLS—such as assets with deep code violations, foundation structural updates, probate issues, or tired landlords handling severe property management burnout. 
+
+When you align transactions with us, we ensure your professional value is highly protected:
+1. Double-Dip Commissions: We are unrepresented and prefer you write yourself into our contracts to capture both sides of the transactional payout.
+2. Clean Performance Execution: We utilize our own custom agreements, preferred escrow title entities, settle 100% in cash, and lock up clear closing schedules in 30 days or less.
+3. Fast No-Hassle Answers: We value your timeline and don't tie up files with endless renegotiations.
+
+If you have any current properties, fixer-upper portfolios struggling with bank financing constraints, or incoming pocket assets that need a reliable cash buyer before going public, please let me know. Let's close some volume together this month.
+
+Best regards,
+
+{{sender.first_name}}
+{{sender.company}}
+{{sender.phone}}</textarea>
+                <div class="actions">
+                    <button class="copy-btn" onclick="copyText('ro_email1',this)">Copy</button>
+                    <button class="select-btn" onclick="selectText('ro_email1')">Select</button>
+                </div>
+            </div>
+        </div>
+
         <!-- GAUGE -->
         <div id="gauge" class="section">
             <h2>Gauge</h2>
@@ -642,7 +653,7 @@ We specialize in buying properties that need repairs or homes where regular buye
             
             <div class="card">
                 <div class="card-title">Quick Situation Real Check Text</div>
-                <textarea id="ga_q1">Hey {{contact.first_name}}, saw your listing on {{contact.full_address}}. I work with cash and creative investors buying distressed/off-market properties. Curious what's the REAL situation with this one? Any flexibility from seller?</textarea>
+                <textarea id="ga_q1">Hey {{contact.first_name}}, saw your listing on {{contact.full_address}}. I work with cash and creative investors buying distressed/off-market properties. Curious what's the REAL situation with this one? Do they have any other properties or problem assets they are trying to unload alongside this?</textarea>
                 <div class="actions">
                     <button class="copy-btn" onclick="copyText('ga_q1',this)">Copy</button>
                     <button class="select-btn" onclick="selectText('ga_q1')">Select</button>
@@ -873,7 +884,7 @@ Let me know if the seller would prefer this premium setup over a discounted cash
             
             <div class="card">
                 <div class="card-title">Jamil Damji "Double-Dip" Collaboration Hook</div>
-                <textarea id="tr1">Hey {{contact.first_name}}, on this deal at {{contact.full_address}}, I want you to represent me on the buying side too. No need to bring in another agent. You can write yourself in for both sides and keep the full double commission. I like keeping things simple and making sure the agents who work with me get taken care of. Let's get this put together!</textarea>
+                <textarea id="tr1">Hey {{contact.first_name}}, on this deal at {{contact.full_address}}, I want you to represent me on the buying side too. No need to bring in another agent. You can write yourself in for both sides and keep the full double commission. Also, do you happen to control any other properties, off-market packages, or unlisted listings around here that we could package together under a similar structure? Let's get this put together!</textarea>
                 <div class="actions">
                     <button class="copy-btn" onclick="copyText('tr1',this)">Copy</button>
                     <button class="select-btn" onclick="selectText('tr1')">Select</button>
@@ -925,7 +936,7 @@ Let me know if the seller would prefer this premium setup over a discounted cash
 
             <div class="card">
                 <div class="card-title">The Simple "Still Available?" Text Check</div>
-                <textarea id="gh2">Hey {{contact.first_name}}, just checking in—did the sellers accept another offer on {{contact.full_address}}, or are they still looking for a clean cash buyer?</textarea>
+                <textarea id="gh2">Hey {{contact.first_name}}, just checking in—did the sellers accept another offer on {{contact.full_address}}, or are they still looking for a clean cash buyer? Also, did they or any of your other clients have any properties requiring cash buyouts that you're trying to move this week?</textarea>
                 <div class="actions">
                     <button class="copy-btn" onclick="copyText('gh2',this)">Copy</button>
                     <button class="select-btn" onclick="selectText('gh2')">Select</button>
@@ -937,32 +948,6 @@ Let me know if the seller would prefer this premium setup over a discounted cash
 </div>
 
 <script>
-function toggleTheme() {
-    const body = document.body;
-    const btn = document.getElementById('themeBtn');
-    const badge = document.getElementById('badgeIndicator');
-    
-    if (body.getAttribute('data-theme') === 'celtics') {
-        body.removeAttribute('data-theme');
-        btn.innerHTML = '☘️ Travel to Boston';
-        badge.innerHTML = 'LAKERS CHAMPIONSHIP LOCKER';
-    } else {
-        body.setAttribute('data-theme', 'celtics');
-        btn.innerHTML = '👑 Return to L.A.';
-        badge.innerHTML = 'CELTICS BANNER ROOM ACCESS';
-    }
-}
-
-document.addEventListener("DOMContentLoaded", function() {
-    const body = document.body;
-    const btn = document.getElementById('themeBtn');
-    if(body.getAttribute('data-theme') === 'celtics') {
-        btn.innerHTML = '👑 Return to L.A.';
-    } else {
-        btn.innerHTML = '☘️ Travel to Boston';
-    }
-});
-
 function openTab(evt, tabName){
     document.getElementById('scriptSearch').value = '';
     
